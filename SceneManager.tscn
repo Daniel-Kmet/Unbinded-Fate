@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlo1nnqukdhrr"]
+
+[ext_resource type="Script" path="res://SceneManager.cs" id="1_8hjwx"]
+[ext_resource type="PackedScene" uid="uid://bnuevs8slhrxn" path="res://Scenes/Title Screen/TitleScreen.tscn" id="2_py6lk"]
+[ext_resource type="PackedScene" uid="uid://bnl65souura2r" path="res://Transition.tscn" id="3_aombf"]
+
+[node name="SceneManager" type="Node2D"]
+position = Vector2(6, 0)
+script = ExtResource("1_8hjwx")
+
+[node name="CurrentScene" type="Node2D" parent="."]
+
+[node name="Title Screen" parent="CurrentScene" instance=ExtResource("2_py6lk")]
+
+[node name="TransitionScene" parent="." instance=ExtResource("3_aombf")]
+
+[connection signal="GameStarted" from="CurrentScene/Title Screen" to="." method="_GameStarted"]

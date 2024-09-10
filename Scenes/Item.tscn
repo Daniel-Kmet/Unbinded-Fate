@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://bgntgqk640c64"]
+
+[ext_resource type="Texture2D" uid="uid://cv2hdx5p3k3hi" path="res://Sprites/Weapons/Baseball Bat.png" id="1_1addr"]
+[ext_resource type="Texture2D" uid="uid://diw4456kav17f" path="res://Animations/Coin/Pickable Coin Not UI.pxo.png" id="2_75yj4"]
+[ext_resource type="Script" path="res://Scenes/ShopItem.cs" id="2_nca5m"]
+
+[sub_resource type="SystemFont" id="SystemFont_ieevb"]
+font_names = PackedStringArray("Stencil")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_2defa"]
+font_names = PackedStringArray("Stencil")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ildjk"]
+line_spacing = 0.0
+font = SubResource("SystemFont_2defa")
+font_size = 50
+outline_size = 14
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 13
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h82a4"]
+size = Vector2(629.508, 629.152)
+
+[node name="Item" type="Sprite2D"]
+visibility_layer = 32
+z_index = 6
+position = Vector2(310, 226)
+scale = Vector2(0.38125, 0.36875)
+texture = ExtResource("1_1addr")
+script = ExtResource("2_nca5m")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.049
+anchor_top = 0.5
+anchor_right = 0.967
+anchor_bottom = 0.812
+offset_left = -320.36
+offset_top = -245.0
+offset_right = -319.88
+offset_bottom = -319.68
+alignment = 1
+
+[node name="Name" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 14
+theme_override_constants/shadow_outline_size = 13
+theme_override_fonts/font = SubResource("SystemFont_ieevb")
+theme_override_font_sizes/font_size = 50
+text = "Weapon name"
+label_settings = SubResource("LabelSettings_ildjk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Price" type="Label" parent="."]
+offset_left = -289.0
+offset_top = 255.0
+offset_right = -100.0
+offset_bottom = 306.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 14
+theme_override_constants/shadow_outline_size = 13
+theme_override_fonts/font = SubResource("SystemFont_ieevb")
+theme_override_font_sizes/font_size = 50
+text = "Price:"
+label_settings = SubResource("LabelSettings_ildjk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coin" type="Sprite2D" parent="Price"]
+position = Vector2(218.18, 21.6104)
+scale = Vector2(0.102459, 0.102459)
+texture = ExtResource("2_75yj4")
+
+[node name="Cost" type="Label" parent="Price"]
+layout_mode = 0
+offset_left = 254.902
+offset_top = -0.0847458
+offset_right = 443.902
+offset_bottom = 50.9153
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 14
+theme_override_constants/shadow_outline_size = 13
+theme_override_fonts/font = SubResource("SystemFont_ieevb")
+theme_override_font_sizes/font_size = 50
+text = "10"
+label_settings = SubResource("LabelSettings_ildjk")
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visibility_layer = 32
+z_index = 6
+position = Vector2(5.24591, 5.42383)
+shape = SubResource("RectangleShape2D_h82a4")
+
+[connection signal="input_event" from="Area2D" to="." method="_ShopItemClicked"]

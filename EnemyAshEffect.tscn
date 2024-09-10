@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://da5hoiyx1fus8"]
+
+[ext_resource type="Script" path="res://EnemyAshEffect.cs" id="1_dtmt3"]
+
+[node name="Enemy death particles" type="CPUParticles2D"]
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 234.48
+scale_amount_min = 4.5
+scale_amount_max = 4.5
+color = Color(0.187176, 0.187176, 0.187176, 1)
+script = ExtResource("1_dtmt3")

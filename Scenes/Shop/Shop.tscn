@@ -1,0 +1,155 @@
+[gd_scene load_steps=16 format=3 uid="uid://nxahh4yvgpo2"]
+
+[ext_resource type="Script" path="res://Scenes/Shop/Shop.cs" id="1_b74pq"]
+[ext_resource type="Texture2D" uid="uid://k8tk60amjii3" path="res://UI/Shop/UI CHEST SCREEN.png" id="1_hfj4p"]
+[ext_resource type="AudioStream" uid="uid://bp4ylmy474xxe" path="res://Music/Shop/shop guy.mp3" id="2_gv148"]
+[ext_resource type="Texture2D" uid="uid://dbkpgnobcfehb" path="res://Animations/Coin/Frame 2 Coin pick Up.pxo (1).png" id="3_ircnl"]
+[ext_resource type="Texture2D" uid="uid://crr5havwfxpf1" path="res://Animations/Coin/Frame 2 Coin pick Up.pxo.png" id="4_ui48j"]
+[ext_resource type="Texture2D" uid="uid://bh6mcnt0kedxq" path="res://Animations/Coin/Frame 3 Coin pick Up.pxo.png" id="5_cypjv"]
+[ext_resource type="Texture2D" uid="uid://f3l08akw61p7" path="res://Animations/Coin/Frame 6 Coin pick Up.pxo.png" id="6_gmjjd"]
+[ext_resource type="Texture2D" uid="uid://tcxwn4npct2c" path="res://Animations/Coin/Pickable Coin Not UI Frame 1 .pxo.png" id="7_biko5"]
+[ext_resource type="Texture2D" uid="uid://bgnmfqflwk465" path="res://Animations/Coin/Pickable Coin Not UI Frame 4.pxo.pxo.png" id="8_g6wui"]
+[ext_resource type="Texture2D" uid="uid://diw4456kav17f" path="res://Animations/Coin/Pickable Coin Not UI.pxo.png" id="9_dkuf6"]
+[ext_resource type="PackedScene" uid="uid://bgntgqk640c64" path="res://Scenes/Item.tscn" id="10_t4pan"]
+
+[sub_resource type="SystemFont" id="SystemFont_ynrhn"]
+font_names = PackedStringArray("Stencil")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1s85n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ircnl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ui48j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cypjv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gmjjd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_biko5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_g6wui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dkuf6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SystemFont" id="SystemFont_1dywu"]
+font_names = PackedStringArray("Stencil")
+
+[sub_resource type="LabelSettings" id="LabelSettings_g7cjt"]
+line_spacing = 0.0
+font = SubResource("SystemFont_1dywu")
+font_size = 25
+outline_size = 14
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 13
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+
+[node name="Shop" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_b74pq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -410.0
+offset_top = -320.0
+offset_right = 410.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_hfj4p")
+stretch_mode = 2
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.674
+anchor_top = 0.733
+anchor_right = 0.852
+anchor_bottom = 0.844
+offset_left = 0.0799561
+offset_top = 0.23999
+offset_right = -0.160034
+offset_bottom = 0.319946
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = SubResource("SystemFont_ynrhn")
+theme_override_font_sizes/font_size = 25
+text = "Close Shop"
+flat = true
+
+[node name="CoinUI" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(824, 222)
+scale = Vector2(0.14375, 0.14375)
+sprite_frames = SubResource("SpriteFrames_1s85n")
+frame_progress = 0.215765
+
+[node name="Balance" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = 728.0
+offset_top = 125.0
+offset_right = 920.0
+offset_bottom = 151.0
+theme_override_font_sizes/font_size = 25
+text = "Balance"
+label_settings = SubResource("LabelSettings_g7cjt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coins" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = 728.0
+offset_top = 290.0
+offset_right = 920.0
+offset_bottom = 316.0
+theme_override_font_sizes/font_size = 25
+text = "100"
+label_settings = SubResource("LabelSettings_g7cjt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shop Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gv148")
+
+[node name="Slot 1" parent="." instance=ExtResource("10_t4pan")]
+position = Vector2(310, 229)
+
+[node name="Slot 2" parent="." instance=ExtResource("10_t4pan")]
+position = Vector2(568, 229)
+
+[node name="Slot 3" parent="." instance=ExtResource("10_t4pan")]
+position = Vector2(309, 488)
+
+[node name="Slot 4" parent="." instance=ExtResource("10_t4pan")]
+position = Vector2(568, 488)
+
+[connection signal="pressed" from="Control/Button" to="." method="_onButtonPressed"]

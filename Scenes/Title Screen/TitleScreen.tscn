@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnuevs8slhrxn"]
+
+[ext_resource type="Script" path="res://TitleScreen.cs" id="1_4oqv4"]
+[ext_resource type="Texture2D" uid="uid://brg8wt1fli5yl" path="res://Dark Forest Menu Orginal.pxo.png" id="2_hgof4"]
+[ext_resource type="PackedScene" uid="uid://b6peo3ftgnr1b" path="res://MusicManager.tscn" id="3_bhlhe"]
+
+[sub_resource type="SystemFont" id="SystemFont_1wh3a"]
+font_names = PackedStringArray("Stencil")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_cljqp"]
+font_names = PackedStringArray("Stencil")
+subpixel_positioning = 0
+
+[node name="Title Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1080.0
+offset_bottom = 720.0
+script = ExtResource("1_4oqv4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hgof4")
+expand_mode = 3
+
+[node name="Music" parent="." instance=ExtResource("3_bhlhe")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.5
+offset_top = -42.0
+offset_right = 153.5
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = SubResource("SystemFont_1wh3a")
+theme_override_font_sizes/font_size = 60
+text = "Play"
+flat = true
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -380.0
+offset_top = 137.0
+offset_right = 380.0
+offset_bottom = 274.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 10
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = SubResource("SystemFont_cljqp")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[wave]Unbinded Fate[/wave]"
+fit_content = true
+autowrap_mode = 0
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_onPlayPressed"]

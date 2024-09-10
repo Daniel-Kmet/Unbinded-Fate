@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dt7c0o54vvhuo"]
+
+[ext_resource type="Script" path="res://Item.cs" id="1_eh0sk"]
+[ext_resource type="Texture2D" uid="uid://bs2xwuc24bd42" path="res://Sprites/Weapons/Paper Plane Weapon.png" id="2_7i6u1"]
+
+[resource]
+script = ExtResource("1_eh0sk")
+name = "Paper Airplane"
+damage = 0
+level = 0
+animationName = ""
+texture = ExtResource("2_7i6u1")

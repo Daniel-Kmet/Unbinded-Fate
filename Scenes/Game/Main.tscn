@@ -1,0 +1,27 @@
+[gd_scene load_steps=8 format=3 uid="uid://c361srd85cquh"]
+
+[ext_resource type="Script" path="res://Game.cs" id="1_vdh4e"]
+[ext_resource type="PackedScene" uid="uid://b6t84dw01i5jt" path="res://World.tscn" id="2_1awb4"]
+[ext_resource type="PackedScene" uid="uid://c7vcuqiweex2j" path="res://Player.tscn" id="3_a0bhq"]
+[ext_resource type="PackedScene" uid="uid://bru0f2gihmnor" path="res://UI.tscn" id="4_bum34"]
+[ext_resource type="PackedScene" uid="uid://bqcwsvrg15ab1" path="res://EnemySpawner.tscn" id="5_nukhl"]
+[ext_resource type="PackedScene" uid="uid://blsucqfgybpwo" path="res://SfxManager.tscn" id="6_dei1y"]
+[ext_resource type="AudioStream" uid="uid://b2ahv0hhpow8h" path="res://Music/enemybattle.wav" id="7_j53o8"]
+
+[node name="MainGame" type="Node2D"]
+script = ExtResource("1_vdh4e")
+
+[node name="World" parent="." instance=ExtResource("2_1awb4")]
+
+[node name="UI" parent="." instance=ExtResource("4_bum34")]
+
+[node name="EnemySpawner" parent="." instance=ExtResource("5_nukhl")]
+
+[node name="Sfx" parent="." instance=ExtResource("6_dei1y")]
+
+[node name="Player" parent="." instance=ExtResource("3_a0bhq")]
+position = Vector2(512, 328)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_j53o8")
+autoplay = true

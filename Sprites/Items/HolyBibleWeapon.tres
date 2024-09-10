@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://drviyhqe2yvft"]
+
+[ext_resource type="Script" path="res://Item.cs" id="1_1g37p"]
+[ext_resource type="Texture2D" uid="uid://8uo318sk52i0" path="res://Sprites/Weapons/bible weapon.png" id="2_2uaxs"]
+
+[resource]
+script = ExtResource("1_1g37p")
+name = "Holy Bible"
+damage = 5
+animationName = "Bible Weapon Attack Animations"
+texture = ExtResource("2_2uaxs")

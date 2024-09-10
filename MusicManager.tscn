@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6peo3ftgnr1b"]
+
+[ext_resource type="AudioStream" uid="uid://b2tlgfdo5yotc" path="res://Music/no bitcrush.mp3" id="1_08a0f"]
+
+[node name="Music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_08a0f")
+autoplay = true

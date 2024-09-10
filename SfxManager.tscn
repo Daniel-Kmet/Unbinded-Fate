@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://blsucqfgybpwo"]
+
+[ext_resource type="AudioStream" uid="uid://bepy4dxx4xadj" path="res://Sfx/death1.wav" id="1_jw18c"]
+[ext_resource type="AudioStream" uid="uid://c73jasnnlcadd" path="res://Sfx/death2.wav" id="2_lunys"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t2324"]
+streams_count = 2
+stream_0/stream = ExtResource("1_jw18c")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_lunys")
+stream_1/weight = 1.0
+
+[node name="Sfx" type="Node2D"]
+
+[node name="Basic Enemy Death Sfx" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_t2324")

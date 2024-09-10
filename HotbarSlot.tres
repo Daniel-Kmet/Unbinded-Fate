@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://0767eryldi10"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jsum"]
+bg_color = Color(0.627451, 0.627451, 0.627451, 0.372549)
+border_width_bottom = 8
+border_color = Color(0.196078, 0.196078, 0.196078, 0.647059)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.34902)
+shadow_size = 5
+shadow_offset = Vector2(0, 1)
+anti_aliasing = false
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 26
+Button/styles/focus = SubResource("StyleBoxFlat_2jsum")
+Button/styles/hover = SubResource("StyleBoxFlat_2jsum")
+Button/styles/normal = SubResource("StyleBoxFlat_2jsum")
+Button/styles/pressed = SubResource("StyleBoxFlat_2jsum")

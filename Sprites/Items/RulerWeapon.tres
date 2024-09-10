@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://clq2iuuqit3jw"]
+
+[ext_resource type="Script" path="res://Item.cs" id="1_pouos"]
+[ext_resource type="Texture2D" uid="uid://d4a0f7h4mfere" path="res://Sprites/Weapons/Ruler Weapon.png" id="2_k5j20"]
+
+[resource]
+script = ExtResource("1_pouos")
+name = "Ruler"
+damage = 3
+animationName = "Ruler Weapon Attack Animations"
+texture = ExtResource("2_k5j20")

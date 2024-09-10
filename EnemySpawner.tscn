@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqcwsvrg15ab1"]
+
+[ext_resource type="Script" path="res://EnemySpawner.cs" id="1_3emh0"]
+
+[node name="EnemySpawner" type="Node2D" node_paths=PackedStringArray("spawn_points")]
+script = ExtResource("1_3emh0")
+spawn_points = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5"), NodePath("SpawnPoint6"), NodePath("SpawnPoint7"), NodePath("SpawnPoint8"), NodePath("SpawnPoint9"), NodePath("SpawnPoint10")]
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(-32, 152)
+
+[node name="SpawnPoint2" type="Node2D" parent="."]
+position = Vector2(-32, 664)
+
+[node name="SpawnPoint3" type="Node2D" parent="."]
+position = Vector2(200, 760)
+
+[node name="SpawnPoint4" type="Node2D" parent="."]
+position = Vector2(184, -40)
+
+[node name="SpawnPoint5" type="Node2D" parent="."]
+position = Vector2(576, -40)
+
+[node name="SpawnPoint6" type="Node2D" parent="."]
+position = Vector2(928, -40)
+
+[node name="SpawnPoint7" type="Node2D" parent="."]
+position = Vector2(1152, 144)
+
+[node name="SpawnPoint8" type="Node2D" parent="."]
+position = Vector2(1144, 600)
+
+[node name="SpawnPoint9" type="Node2D" parent="."]
+position = Vector2(880, 768)
+
+[node name="SpawnPoint10" type="Node2D" parent="."]
+position = Vector2(528, 768)

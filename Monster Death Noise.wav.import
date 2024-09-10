@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://mbv1aue8lm5p"
+path="res://.godot/imported/Monster Death Noise.wav-e2960961d118af1fe6739d6c79f0c860.sample"
+
+[deps]
+
+source_file="res://Monster Death Noise.wav"
+dest_files=["res://.godot/imported/Monster Death Noise.wav-e2960961d118af1fe6739d6c79f0c860.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

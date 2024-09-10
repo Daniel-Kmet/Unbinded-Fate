@@ -1,0 +1,108 @@
+[gd_scene load_steps=14 format=3 uid="uid://ctsd7mx2yh3n3"]
+
+[ext_resource type="Script" path="res://LittleEnemy.cs" id="1_7mwan"]
+[ext_resource type="Shader" uid="uid://dyr1so86bifg0" path="res://shaders/EnemyHitFlash.tres" id="2_jrbae"]
+[ext_resource type="Script" path="res://Health.cs" id="2_mjaw5"]
+[ext_resource type="Texture2D" uid="uid://bow5e6l8swjn7" path="res://Animations/Little Demon/Little Demon Move Frame 1.pxo.pxo.png" id="3_im3up"]
+[ext_resource type="Texture2D" uid="uid://unktha0pruga" path="res://Animations/Little Demon/Little Demon Move Frame 2.pxo.pxo.pxo.png" id="4_ewmqc"]
+[ext_resource type="PackedScene" uid="uid://cxn8vv2j8h68m" path="res://Healthbar.tscn" id="4_o7y1j"]
+[ext_resource type="Texture2D" uid="uid://u15ult127xyc" path="res://Animations/Little Demon/Little Demon Move Frame 3 Finalpxo.pxo.pxo.png" id="5_6t6xx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q5j3s"]
+resource_local_to_scene = true
+shader = ExtResource("2_jrbae")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(0.947406, 4e-06, 2e-06, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_52dol"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_im3up")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ewmqc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6t6xx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ewmqc")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xou6"]
+size = Vector2(64, 56)
+
+[sub_resource type="Animation" id="Animation_nkal5"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy Animations:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_jd72t"]
+resource_name = "hit_flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy Animations:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fk2hb"]
+_data = {
+"RESET": SubResource("Animation_nkal5"),
+"hit_flash": SubResource("Animation_jd72t")
+}
+
+[node name="Demon" type="CharacterBody2D"]
+scale = Vector2(0.6, 0.6)
+collision_layer = 4
+script = ExtResource("1_7mwan")
+
+[node name="Enemy Animations" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_q5j3s")
+scale = Vector2(0.364583, 0.364583)
+sprite_frames = SubResource("SpriteFrames_52dol")
+animation = &"Walking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_8xou6")
+debug_color = Color(0.960784, 0, 0, 0.419608)
+
+[node name="Data" type="Node2D" parent="."]
+
+[node name="Healthbar" parent="Data" instance=ExtResource("4_o7y1j")]
+offset_left = -56.0
+offset_top = -48.0
+offset_right = 56.0
+offset_bottom = -40.0
+
+[node name="Health" type="Node2D" parent="Data"]
+script = ExtResource("2_mjaw5")
+maxHealth = 5.0
+
+[node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fk2hb")
+}

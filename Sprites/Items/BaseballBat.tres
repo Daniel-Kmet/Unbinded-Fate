@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c50xhe1glji53"]
+
+[ext_resource type="Script" path="res://Item.cs" id="1_j5074"]
+[ext_resource type="Texture2D" uid="uid://cv2hdx5p3k3hi" path="res://Sprites/Weapons/Baseball Bat.png" id="2_h68ka"]
+
+[resource]
+script = ExtResource("1_j5074")
+name = "Baseball Bat"
+damage = 0
+animationName = ""
+texture = ExtResource("2_h68ka")

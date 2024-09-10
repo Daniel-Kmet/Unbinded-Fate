@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://0s5o0sk3ear"]
+
+[ext_resource type="Script" path="res://Item.cs" id="1_atr1y"]
+
+[resource]
+script = ExtResource("1_atr1y")
+name = "Cross"
+damage = 0
+animationName = ""

@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=3 uid="uid://du2ofl50kwj"]
+
+[ext_resource type="Script" path="res://Scenes/Game/Chest.cs" id="1_egu47"]
+[ext_resource type="Texture2D" uid="uid://hp5gg31mswye" path="res://Sprites/Chest/Chest Sprite Sheet.png" id="2_2k5nr"]
+[ext_resource type="AudioStream" uid="uid://thy1loipq3ir" path="res://Sfx/Chest/unlockchest.wav" id="3_taudj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5arp0"]
+radius = 803.99
+
+[sub_resource type="Animation" id="Animation_15064"]
+resource_name = "Open Chest"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_2k5nr")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Chest Sfx")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_taudj")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Chest Sfx:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-16.0]
+}
+
+[sub_resource type="Animation" id="Animation_5fbi6"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p3urt"]
+_data = {
+"Open Chest": SubResource("Animation_15064"),
+"RESET": SubResource("Animation_5fbi6")
+}
+
+[node name="Chest" type="Area2D"]
+scale = Vector2(0.1, 0.1)
+collision_mask = 2
+script = ExtResource("1_egu47")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_2k5nr")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5arp0")
+
+[node name="Chest Interaction" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p3urt")
+}
+
+[node name="Chest Sfx" type="AudioStreamPlayer2D" parent="."]
+volume_db = -16.0
+
+[connection signal="body_entered" from="." to="." method="_onChestAreaEntered"]
+[connection signal="body_exited" from="." to="." method="_onChestAreaExited"]
