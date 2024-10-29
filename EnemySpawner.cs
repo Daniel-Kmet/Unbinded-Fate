@@ -16,11 +16,11 @@ public partial class EnemySpawner : Node2D
 
 	private float time_until_spawn;
 
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		game = (Game)GetTree().Root.GetNode("SceneManager/CurrentScene/MainGame");
-        spawn_rate = 1 / enemies_per_second;
-    }
+		spawn_rate = 1 / enemies_per_second;
+	}
 
 	public override void _Process(double delta)
 	{
@@ -36,8 +36,8 @@ public partial class EnemySpawner : Node2D
 		spawn_rate = 1 / enemies_per_second;
 	}
 
-    private void Spawn()
-    {
+	private void Spawn()
+	{
 		if (enemiesSpawned < game.wave.totalEnemies && game.wave.currentWave % 10 != 0)
 		{
 			RandomNumberGenerator enemyRng = new();
@@ -81,5 +81,5 @@ public partial class EnemySpawner : Node2D
 		{
 			
 		}
-    }
+	}
 }

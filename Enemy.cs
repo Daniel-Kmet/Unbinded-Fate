@@ -36,8 +36,8 @@ public partial class Enemy : CharacterBody2D, IDamageable
 		SetHealthbar();
 	}
 
-    public override void _PhysicsProcess(double delta)
-    {
+	public override void _PhysicsProcess(double delta)
+	{
 		if (player != null)
 		{
 			Vector2 direction = (player.GlobalPosition - GlobalPosition).Normalized();
@@ -50,11 +50,11 @@ public partial class Enemy : CharacterBody2D, IDamageable
 		}
 
 		MoveAndSlide();
-    }
+	}
 
-    public void _TakeDamage(float damage)
-    {
-        if (enemyHealth.health > 0 && enemyHealth.isDead != true)
+	public void _TakeDamage(float damage)
+	{
+		if (enemyHealth.health > 0 && enemyHealth.isDead != true)
 		{
 			enemyHealth.health -= damage;
 			_hitFlash.Play("hit_flash");
@@ -64,7 +64,7 @@ public partial class Enemy : CharacterBody2D, IDamageable
 			deathSfx.Play();
 			_Die();
 		}
-    }
+	}
 
 	public void InitializeHealth()
 	{
