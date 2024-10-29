@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://c7vcuqiweex2j"]
+[gd_scene load_steps=21 format=3 uid="uid://c7vcuqiweex2j"]
 
 [ext_resource type="Script" path="res://Player.cs" id="2_nfju6"]
 [ext_resource type="Resource" uid="uid://clq2iuuqit3jw" path="res://Sprites/Items/RulerWeapon.tres" id="2_w8oxv"]
 [ext_resource type="Script" path="res://FollowCamera.cs" id="3_84xh7"]
 [ext_resource type="Script" path="res://Health.cs" id="3_g8cpl"]
+[ext_resource type="PackedScene" uid="uid://cxn8vv2j8h68m" path="res://Healthbar.tscn" id="4_hgw2i"]
 [ext_resource type="Texture2D" uid="uid://cgxm1jambl2h1" path="res://Animations/Player/Attack/Default Guy Swing Animation.png" id="6_3hhv5"]
 [ext_resource type="Texture2D" uid="uid://cqgkkg730mpj7" path="res://Animations/Player/Death/Death Animation.png" id="6_ifxyi"]
 [ext_resource type="Texture2D" uid="uid://d4a0f7h4mfere" path="res://Sprites/Weapons/Ruler Weapon.png" id="8_3q35f"]
@@ -609,6 +610,9 @@ size = Vector2(75.5345, 343.852)
 [sub_resource type="CircleShape2D" id="CircleShape2D_yqynm"]
 radius = 128.25
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88j5q"]
+size = Vector2(33, 74)
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerHealth")]
 collision_layer = 2
 collision_mask = 16
@@ -620,6 +624,12 @@ currentWeapon = ExtResource("2_w8oxv")
 
 [node name="Health" type="Node2D" parent="Data"]
 script = ExtResource("3_g8cpl")
+
+[node name="Healthbar" parent="Data" instance=ExtResource("4_hgw2i")]
+offset_left = -53.0
+offset_top = -72.0
+offset_right = 59.0
+offset_bottom = -64.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = -140
@@ -637,7 +647,7 @@ shape = SubResource("CapsuleShape2D_udr2q")
 libraries = {
 "": SubResource("AnimationLibrary_ecai8")
 }
-speed_scale = 4.0
+speed_scale = 1.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1.00002, -1.52588e-05)
@@ -671,6 +681,15 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Range"]
 shape = SubResource("CircleShape2D_yqynm")
 
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0.5, -12)
+shape = SubResource("RectangleShape2D_88j5q")
+
 [connection signal="body_entered" from="Sprite2D/Weapon/Area2D" to="." method="_onWeaponAreaEntered"]
 [connection signal="body_entered" from="Attack Range" to="." method="_onAttackRangeAreaEntered"]
 [connection signal="body_exited" from="Attack Range" to="." method="_onAttackRangeAreaExited"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_area_2d_body_entered"]

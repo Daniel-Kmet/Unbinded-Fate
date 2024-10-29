@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dv2acn0cppjsd"]
+[gd_scene load_steps=15 format=3 uid="uid://dv2acn0cppjsd"]
 
 [ext_resource type="Script" path="res://MediumEnemy.cs" id="1_2b0ud"]
 [ext_resource type="Shader" uid="uid://dyr1so86bifg0" path="res://shaders/EnemyHitFlash.tres" id="2_dnfoy"]
@@ -36,6 +36,9 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xou6"]
 size = Vector2(133.333, 173.333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6jlwe"]
+size = Vector2(125, 158.333)
 
 [sub_resource type="Animation" id="Animation_nkal5"]
 length = 0.2
@@ -90,6 +93,14 @@ position = Vector2(-1.58946e-06, -20)
 shape = SubResource("RectangleShape2D_8xou6")
 debug_color = Color(0.960784, 0, 0, 0.419608)
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.833333, -20.8333)
+shape = SubResource("RectangleShape2D_6jlwe")
+
 [node name="Data" type="Node2D" parent="."]
 
 [node name="Healthbar" parent="Data" instance=ExtResource("9_kekrr")]
@@ -106,3 +117,5 @@ maxHealth = 10.0
 libraries = {
 "": SubResource("AnimationLibrary_fk2hb")
 }
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_area_2d_body_entered"]

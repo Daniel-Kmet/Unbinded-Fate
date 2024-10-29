@@ -10,13 +10,15 @@ public partial class Player : CharacterBody2D, IDamageable
 	AnimationPlayer combatAnimations;
 	List<Enemy> enemiesColliding = new();
 	private bool _inRange = false;
+	private ProgressBar playerHealthBar;
+	private ProgressBar playerDamageBar;
 
 	public int balance = 0;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		playerHealth._SetHealth();
+		InitializeHealth();
 		combatAnimations = GetNode<AnimationPlayer>("AnimationPlayer");
 		combatAnimations.CurrentAnimation = currentWeapon.animationName;
 	}
@@ -26,8 +28,33 @@ public partial class Player : CharacterBody2D, IDamageable
 	{
 		_GetInput();
 		MoveAndSlide();
+		SetHealthbar();
 	}
+	
+	public void InitializeHealth()
+	{
+		// initialize health
+		playerHealth = GetNode<Health>("Data/Health");
+		playerHealth._SetHealth();
 
+		// initialize health bar
+		playerHealthBar = GetNode<ProgressBar>("Data/Healthbar");
+		playerHealthBar.MaxValue = playerHealth.maxHealth;
+		playerHealthBar.Value = playerHealth.health;
+
+		// initialize damage bar
+		playerDamageBar = GetNode<ProgressBar>("Data/Healthbar/Damagebar");
+		playerDamageBar.MaxValue = playerHealth.maxHealth;
+		playerDamageBar.Value = playerHealth.health;
+	}
+	
+	public void SetHealthbar()
+	{
+		playerHealthBar.Value = playerHealth.health;
+		var tween = CreateTween();
+		tween.TweenProperty(playerDamageBar, "value", playerHealth.health, .5);
+	}
+	
 	public override void _Process(double delta)
 	{
 		_checkCollison();
@@ -60,6 +87,7 @@ public partial class Player : CharacterBody2D, IDamageable
 	public void _onWeaponAreaEntered(Enemy enemy)
 	{
 		enemy._TakeDamage(currentWeapon.damage);
+		
 	}
 	private void _checkCollison()
 	{
@@ -80,4 +108,11 @@ public partial class Player : CharacterBody2D, IDamageable
 	{
 		enemiesColliding.Remove(enemy);
 	}
+
+
+
+	
 }
+
+
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctsd7mx2yh3n3"]
+[gd_scene load_steps=16 format=3 uid="uid://ctsd7mx2yh3n3"]
 
 [ext_resource type="Script" path="res://LittleEnemy.cs" id="1_7mwan"]
 [ext_resource type="Shader" uid="uid://dyr1so86bifg0" path="res://shaders/EnemyHitFlash.tres" id="2_jrbae"]
@@ -37,6 +37,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xou6"]
 size = Vector2(64, 56)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6oao5"]
+size = Vector2(73.3333, 70)
+
 [sub_resource type="Animation" id="Animation_nkal5"]
 length = 0.2
 tracks/0/type = "value"
@@ -74,6 +77,9 @@ _data = {
 "hit_flash": SubResource("Animation_jd72t")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wfexy"]
+radius = 109.1
+
 [node name="Demon" type="CharacterBody2D"]
 scale = Vector2(0.6, 0.6)
 collision_layer = 4
@@ -89,6 +95,14 @@ animation = &"Walking"
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_8xou6")
 debug_color = Color(0.960784, 0, 0, 0.419608)
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(7.94729e-07, 6.66667)
+shape = SubResource("RectangleShape2D_6oao5")
 
 [node name="Data" type="Node2D" parent="."]
 
@@ -106,3 +120,14 @@ maxHealth = 5.0
 libraries = {
 "": SubResource("AnimationLibrary_fk2hb")
 }
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(0, 8.33333)
+shape = SubResource("CircleShape2D_wfexy")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
