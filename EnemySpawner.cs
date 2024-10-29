@@ -10,17 +10,19 @@ public partial class EnemySpawner : Node2D
 	public float littleDemonSpeed = 100f;
 	public float mediumDemonSpeed = 85f;
 	public float bigDemonSpeed = 70f;
+	public float mageSpeed = 0f;
+	public float bossSpeed = 100f;
 	public int enemiesSpawned = 0;
 
 	private float spawn_rate;
 
 	private float time_until_spawn;
 
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		game = (Game)GetTree().Root.GetNode("SceneManager/CurrentScene/MainGame");
-        spawn_rate = 1 / enemies_per_second;
-    }
+		spawn_rate = 1 / enemies_per_second;
+	}
 
 	public override void _Process(double delta)
 	{
@@ -36,14 +38,16 @@ public partial class EnemySpawner : Node2D
 		spawn_rate = 1 / enemies_per_second;
 	}
 
-    private void Spawn()
-    {
-		if (enemiesSpawned < game.wave.totalEnemies && game.wave.currentWave % 10 != 0)
+	private void Spawn()
+	{
+		if (enemiesSpawned < game.wave.totalEnemies && game.wave.currentWave % 2 != 0)
 		{
 			RandomNumberGenerator enemyRng = new();
 			float randomFloat = enemyRng.RandfRange(0, 1);
 			MediumEnemy medium = new();
 			BigEnemy big = new();
+			Mage mage = new();
+			//Boss boss = new();
 			
 			if (randomFloat <= medium.spawnChance)
 			{
@@ -66,6 +70,17 @@ public partial class EnemySpawner : Node2D
 				GetTree().Root.GetNode("SceneManager/CurrentScene/MainGame/World").AddChild(big);
 				enemiesSpawned += 1;
 			}
+			if (randomFloat <= mage.spawnChance)
+			{
+				RandomNumberGenerator rng = new RandomNumberGenerator();
+				Vector2 location = spawn_points[rng.Randi() % spawn_points.Length].GlobalPosition;
+				PackedScene monsterScene = ResourceLoader.Load<PackedScene>("res://Mage.tscn");
+				mage = (Mage)monsterScene.Instantiate();
+				mage.GlobalPosition = location;
+				GetTree().Root.GetNode("SceneManager/CurrentScene/MainGame/World").AddChild(mage);
+				enemiesSpawned += 1;
+			}
+
 			else
 			{
 				RandomNumberGenerator rng = new RandomNumberGenerator();
@@ -77,9 +92,16 @@ public partial class EnemySpawner : Node2D
 				enemiesSpawned += 1;
 			}
 		}
-		if (game.wave.currentWave % 10 == 0)
+		if (game.wave.currentWave % 2 == 0)
 		{
-			
+				Boss boss = new();
+				RandomNumberGenerator rng = new RandomNumberGenerator();
+				Vector2 location = spawn_points[0 % spawn_points.Length].GlobalPosition;
+				PackedScene monsterScene = ResourceLoader.Load<PackedScene>("res://Boss.tscn");
+				boss = (Boss)monsterScene.Instantiate();
+				boss.GlobalPosition = location;
+				GetTree().Root.GetNode("SceneManager/CurrentScene/MainGame/World").AddChild(boss);
+				//enemiesSpawned = 1;
 		}
-    }
+	}
 }

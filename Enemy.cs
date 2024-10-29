@@ -15,10 +15,12 @@ public partial class Enemy : CharacterBody2D, IDamageable
 	private ProgressBar _enemyHealthBar;
 	private ProgressBar _enemyDamageBar;
 	protected float speed;
+	protected bool collided;
 
 	public override void _Ready()
 	{
 		// set health
+		collided = false;
 		InitializeHealth();
 		// set animations
 		enemyAnim = GetNode<AnimatedSprite2D>("Enemy Animations");
@@ -36,8 +38,8 @@ public partial class Enemy : CharacterBody2D, IDamageable
 		SetHealthbar();
 	}
 
-    public override void _PhysicsProcess(double delta)
-    {
+	public override void _PhysicsProcess(double delta)
+	{
 		if (player != null)
 		{
 			Vector2 direction = (player.GlobalPosition - GlobalPosition).Normalized();
@@ -50,11 +52,11 @@ public partial class Enemy : CharacterBody2D, IDamageable
 		}
 
 		MoveAndSlide();
-    }
+	}
 
-    public void _TakeDamage(float damage)
-    {
-        if (enemyHealth.health > 0 && enemyHealth.isDead != true)
+	public void _TakeDamage(float damage)
+	{
+		if (enemyHealth.health > 0 && enemyHealth.isDead != true)
 		{
 			enemyHealth.health -= damage;
 			_hitFlash.Play("hit_flash");
@@ -64,7 +66,7 @@ public partial class Enemy : CharacterBody2D, IDamageable
 			deathSfx.Play();
 			_Die();
 		}
-    }
+	}
 
 	public void InitializeHealth()
 	{
@@ -126,4 +128,19 @@ public partial class Enemy : CharacterBody2D, IDamageable
 		lootChest.GlobalPosition = GlobalPosition;
 		GetTree().Root.GetNode("SceneManager/CurrentScene/MainGame").GetNode("World").AddChild(lootChest);
 	}
+	
+	public void _onWeaponAreaEntered(Player player)
+	{
+		player._TakeDamage(1f);
+	}
+
+	public void _onAttackRangeAreaEntered(Player player)
+	{
+		collided = true;
+	}
+	public void _onAttackRangeAreaExited(Player player)
+	{
+		collided = false;
+	}
+	
 }

@@ -7,31 +7,31 @@ script = ExtResource("1_3emh0")
 spawn_points = [NodePath("SpawnPoint"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint4"), NodePath("SpawnPoint5"), NodePath("SpawnPoint6"), NodePath("SpawnPoint7"), NodePath("SpawnPoint8"), NodePath("SpawnPoint9"), NodePath("SpawnPoint10")]
 
 [node name="SpawnPoint" type="Node2D" parent="."]
-position = Vector2(-32, 152)
+position = Vector2(545, 53)
 
 [node name="SpawnPoint2" type="Node2D" parent="."]
-position = Vector2(-32, 664)
+position = Vector2(-64, 197)
 
 [node name="SpawnPoint3" type="Node2D" parent="."]
-position = Vector2(200, 760)
+position = Vector2(292, 809)
 
 [node name="SpawnPoint4" type="Node2D" parent="."]
-position = Vector2(184, -40)
+position = Vector2(197, -40)
 
 [node name="SpawnPoint5" type="Node2D" parent="."]
-position = Vector2(576, -40)
+position = Vector2(535, -31)
 
 [node name="SpawnPoint6" type="Node2D" parent="."]
-position = Vector2(928, -40)
+position = Vector2(566, 802)
 
 [node name="SpawnPoint7" type="Node2D" parent="."]
-position = Vector2(1152, 144)
+position = Vector2(842, -31)
 
 [node name="SpawnPoint8" type="Node2D" parent="."]
-position = Vector2(1144, 600)
+position = Vector2(1123, 249)
 
 [node name="SpawnPoint9" type="Node2D" parent="."]
-position = Vector2(880, 768)
+position = Vector2(826, 800)
 
 [node name="SpawnPoint10" type="Node2D" parent="."]
-position = Vector2(528, 768)
+position = Vector2(-76, 490)

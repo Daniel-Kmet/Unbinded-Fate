@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://xmxrrn7lbeaj"]
+
+[node name="BossSpawner" type="Node2D"]
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(526, 360)

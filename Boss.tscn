@@ -1,47 +1,94 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmkclkwm1ulls"]
+[gd_scene load_steps=11 format=3 uid="uid://dmkclkwm1ulls"]
 
+[ext_resource type="Script" path="res://Boss.cs" id="1_2us8e"]
 [ext_resource type="Texture2D" uid="uid://1tbhbyrib8lo" path="res://Sprites/Boss/Boss Default.pxo.png" id="1_matgi"]
 [ext_resource type="Texture2D" uid="uid://dokk0ljk7hgf" path="res://Sprites/Boss/Boss Left Hand.png" id="2_v7b3k"]
 [ext_resource type="Texture2D" uid="uid://brt0jgt73kgmv" path="res://Sprites/Boss/Boss Right Hand.png" id="3_1p0e3"]
+[ext_resource type="PackedScene" uid="uid://cxn8vv2j8h68m" path="res://Healthbar.tscn" id="5_eigi2"]
+[ext_resource type="Script" path="res://Health.cs" id="6_ykaiw"]
 
-[sub_resource type="Animation" id="Animation_tkr7k"]
-resource_name = "Attack"
-length = 1.5
+[sub_resource type="CircleShape2D" id="CircleShape2D_h8r1k"]
+radius = 172.154
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_uajob"]
-_data = {
-"Attack": SubResource("Animation_tkr7k")
-}
+[sub_resource type="CircleShape2D" id="CircleShape2D_mhgfh"]
+radius = 180.011
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rl6xw"]
-size = Vector2(328, 368)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gaqma"]
+size = Vector2(613, 390)
 
-[node name="Boss" type="Sprite2D"]
-texture = ExtResource("1_matgi")
+[sub_resource type="CircleShape2D" id="CircleShape2D_jy5bu"]
+radius = 227.495
 
-[node name="Boss Animations" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_uajob")
-}
+[node name="Boss" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_2us8e")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="Right Hand" type="Sprite2D" parent="Area2D"]
 position = Vector2(522, 407)
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("3_1p0e3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-500, 400)
-shape = SubResource("RectangleShape2D_rl6xw")
+[node name="Right Hand Collision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-484, 422)
+shape = SubResource("CircleShape2D_h8r1k")
 
 [node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="Left Hand" type="Sprite2D" parent="Area2D2"]
 position = Vector2(-504, 407)
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("2_v7b3k")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(525, 400)
-shape = SubResource("RectangleShape2D_rl6xw")
+[node name="Left Hand Collision" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(507, 422)
+shape = SubResource("CircleShape2D_mhgfh")
+
+[node name="Area2D3" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Body" type="Sprite2D" parent="Area2D3"]
+texture = ExtResource("1_matgi")
+
+[node name="Body Collision" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(0.5, 132)
+shape = SubResource("RectangleShape2D_gaqma")
+
+[node name="Head Collision" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(2, -95)
+shape = SubResource("CircleShape2D_jy5bu")
+
+[node name="Right Hand Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-484, 422)
+shape = SubResource("CircleShape2D_h8r1k")
+
+[node name="Left Hand Collision" type="CollisionShape2D" parent="."]
+position = Vector2(507, 422)
+shape = SubResource("CircleShape2D_mhgfh")
+
+[node name="Body Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 132)
+shape = SubResource("RectangleShape2D_gaqma")
+
+[node name="Head Collision" type="CollisionShape2D" parent="."]
+position = Vector2(2, -95)
+shape = SubResource("CircleShape2D_jy5bu")
+
+[node name="Data" type="Node2D" parent="."]
+
+[node name="Healthbar" parent="Data" instance=ExtResource("5_eigi2")]
+offset_left = -130.0
+offset_top = 440.0
+offset_right = 129.0
+offset_bottom = 475.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Health" type="Node2D" parent="Data"]
+script = ExtResource("6_ykaiw")
+maxHealth = 15.0
