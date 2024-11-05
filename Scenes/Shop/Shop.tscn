@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://nxahh4yvgpo2"]
+[gd_scene load_steps=17 format=3 uid="uid://nxahh4yvgpo2"]
 
 [ext_resource type="Script" path="res://Scenes/Shop/Shop.cs" id="1_b74pq"]
 [ext_resource type="Texture2D" uid="uid://k8tk60amjii3" path="res://UI/Shop/UI CHEST SCREEN.png" id="1_hfj4p"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://tcxwn4npct2c" path="res://Animations/Coin/Pickable Coin Not UI Frame 1 .pxo.png" id="7_biko5"]
 [ext_resource type="Texture2D" uid="uid://bgnmfqflwk465" path="res://Animations/Coin/Pickable Coin Not UI Frame 4.pxo.pxo.png" id="8_g6wui"]
 [ext_resource type="Texture2D" uid="uid://diw4456kav17f" path="res://Animations/Coin/Pickable Coin Not UI.pxo.png" id="9_dkuf6"]
+[ext_resource type="Script" path="res://Balance.cs" id="10_npvx5"]
 [ext_resource type="PackedScene" uid="uid://bgntgqk640c64" path="res://Scenes/Item.tscn" id="10_t4pan"]
 
 [sub_resource type="SystemFont" id="SystemFont_ynrhn"]
@@ -132,10 +133,10 @@ offset_top = 290.0
 offset_right = 920.0
 offset_bottom = 316.0
 theme_override_font_sizes/font_size = 25
-text = "100"
 label_settings = SubResource("LabelSettings_g7cjt")
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("10_npvx5")
 
 [node name="Shop Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_gv148")
