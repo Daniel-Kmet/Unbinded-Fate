@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c361srd85cquh"]
 
 [ext_resource type="Script" path="res://Game.cs" id="1_vdh4e"]
-[ext_resource type="PackedScene" uid="uid://b6t84dw01i5jt" path="res://World.tscn" id="2_1awb4"]
+[ext_resource type="PackedScene" uid="uid://b6t84dw01i5jt" path="res://Environment/World.tscn" id="2_1awb4"]
 [ext_resource type="PackedScene" uid="uid://c7vcuqiweex2j" path="res://Player.tscn" id="3_a0bhq"]
 [ext_resource type="PackedScene" uid="uid://bru0f2gihmnor" path="res://UI.tscn" id="4_bum34"]
 [ext_resource type="PackedScene" uid="uid://bqcwsvrg15ab1" path="res://EnemySpawner.tscn" id="5_nukhl"]
@@ -12,6 +12,9 @@
 script = ExtResource("1_vdh4e")
 
 [node name="World" parent="." instance=ExtResource("2_1awb4")]
+
+[node name="WorldGenerator" parent="World/StaticBody2D" index="4"]
+player_path = NodePath("../../../Player")
 
 [node name="UI" parent="." instance=ExtResource("4_bum34")]
 
@@ -25,3 +28,5 @@ position = Vector2(512, 328)
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_j53o8")
 autoplay = true
+
+[editable path="World"]
