@@ -8,11 +8,11 @@ extends Node2D
 @export var player_path: NodePath
 var player: Node2D
 
-# Keep track of which chunk instance is currently spawned at each coordinate
-var spawned_chunks: Dictionary[Vector2i, Node2D] = {}
+# Keep track of which chunk instance is currently spawned at each coordinate.
+var spawned_chunks = {}
 
-# NEW: Keep track of which chunk scene was assigned to each coordinate
-var assigned_chunks: Dictionary[Vector2i, PackedScene] = {}
+# Keep track of which chunk scene was assigned to each coordinate.
+var assigned_chunks = {}
 
 func _ready() -> void:
 	if player_path:
@@ -30,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 		for y in range(player_chunk_coord.y - chunk_view_range, player_chunk_coord.y + chunk_view_range + 1):
 			spawn_chunk(Vector2i(x, y))
 
-	# Unload chunks outside view range (but not the village at (0,0))
+	# Unload chunks outside view range (except the village at (0,0))
 	for coord in spawned_chunks.keys():
 		if coord == Vector2i(0, 0):
 			continue
@@ -39,31 +39,30 @@ func _physics_process(_delta: float) -> void:
 
 func spawn_chunk(chunk_coord: Vector2i) -> void:
 	if spawned_chunks.has(chunk_coord):
-		# Already loaded and spawned in the scene
+		# Already loaded/spawned
 		return
 
-	# 1. Determine which chunk scene to use for this coordinate
+	# 1. Determine which chunk scene to use
 	var chunk_scene: PackedScene
 	if chunk_coord == Vector2i(0, 0):
-		# Always the village at origin
+		# Always the village at (0,0)
 		chunk_scene = village_chunk_scene
 	else:
-		# If we've never assigned a chunk to this coordinate, pick a random one
+		# If unassigned, pick a random scene once
 		if not assigned_chunks.has(chunk_coord):
 			if random_chunk_scenes.size() == 0:
 				push_warning("No random_chunk_scenes defined!")
 				return
 			var index = randi() % random_chunk_scenes.size()
 			assigned_chunks[chunk_coord] = random_chunk_scenes[index]
-		# Re-use the scene that was assigned before
 		chunk_scene = assigned_chunks[chunk_coord]
 
-	# 2. Instantiate the chunk
+	# 2. Instantiate and place the chunk
 	var chunk_instance = chunk_scene.instantiate() as Node2D
 	chunk_instance.position = chunk_coord_to_world_position(chunk_coord)
 	add_child(chunk_instance)
 
-	# 3. Record that this coordinate is currently spawned
+	# 3. Record that it's active
 	spawned_chunks[chunk_coord] = chunk_instance
 
 func unload_chunk(chunk_coord: Vector2i) -> void:
@@ -78,6 +77,6 @@ func world_to_chunk_coord(world_pos: Vector2) -> Vector2i:
 
 func chunk_coord_to_world_position(chunk_coord: Vector2i) -> Vector2:
 	return Vector2(
-		chunk_coord.x * chunk_size.x,
-		chunk_coord.y * chunk_size.y
+		float(chunk_coord.x) * chunk_size.x,
+		float(chunk_coord.y) * chunk_size.y
 	)
