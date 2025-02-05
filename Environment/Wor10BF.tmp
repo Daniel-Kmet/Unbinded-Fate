@@ -3249,7 +3249,10 @@ shape = SubResource("RectangleShape2D_jqpu0")
 
 [node name="WorldGenerator" type="Node2D" parent="StaticBody2D"]
 script = ExtResource("6_hpbr8")
+chunk_size = null
+chunk_view_range = null
 village_chunk_scene = ExtResource("7_vifdg")
 random_chunk_scenes = Array[PackedScene]([ExtResource("8_shu4v")])
+player_path = null
 
 [node name="VillageChunk" parent="StaticBody2D" instance=ExtResource("7_vifdg")]
