@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://n6in6j4jxion"]
+
+[ext_resource type="Texture2D" uid="uid://dm22rj6fdn4xe" path="res://Projectile/Projectile spitre.png" id="1_l7hie"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_apx56"]
+radius = 7.0
+
+[node name="Projectile" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 8)
+shape = SubResource("CircleShape2D_apx56")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("1_l7hie")

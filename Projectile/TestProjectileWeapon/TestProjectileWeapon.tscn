@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://drg8n4sdot34j"]
+
+[ext_resource type="Script" path="res://Projectile/TestProjectileWeapon/test_projectile_weapon.gd" id="1_mrko2"]
+[ext_resource type="PackedScene" uid="uid://n6in6j4jxion" path="res://Projectile/Projectile.tscn" id="2_ysa1j"]
+
+[node name="TestProjectileWeapon" type="Sprite2D"]
+script = ExtResource("1_mrko2")
+projectile_scene = ExtResource("2_ysa1j")
