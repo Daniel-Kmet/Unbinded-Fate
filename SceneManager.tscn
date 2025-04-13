@@ -4,9 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bnuevs8slhrxn" path="res://Scenes/Title Screen/TitleScreen.tscn" id="2_py6lk"]
 [ext_resource type="PackedScene" uid="uid://bnl65souura2r" path="res://Transition.tscn" id="3_aombf"]
 
-[node name="SceneManager" type="Node2D"]
+[node name="SceneManager" type="Node2D" node_paths=PackedStringArray("transitionScene")]
 position = Vector2(6, 0)
 script = ExtResource("1_8hjwx")
+transitionScene = NodePath("TransitionScene")
+nextScene = "res://Scenes/Game/Main.tscn"
 
 [node name="CurrentScene" type="Node2D" parent="."]
 

@@ -15,18 +15,12 @@ var player: Node2D
 var spawned_chunks = {}
 
 func _ready() -> void:
-	print(">>> WorldGenerator _ready() called.")
 	if player_path:
 		player = get_node_or_null(player_path) as Node2D
-		if player:
-			print(">>> Found player node:", player)
-		else:
-			print(">>> WARNING: Could not find Player at:", player_path)
 	else:
-		print(">>> WARNING: player_path is not set.")
+		push_warning("player_path is not set.")
 
 	# Always load the village chunk at (0,0)
-	print(">>> Spawning village chunk at origin (0,0).")
 	spawn_chunk(Vector2i(0, 0))
 
 func _physics_process(_delta: float) -> void:
@@ -35,7 +29,6 @@ func _physics_process(_delta: float) -> void:
 
 	# Check the player's chunk coordinate
 	var player_chunk_coord = world_to_chunk_coord(player.global_position)
-	print(">>> _physics_process() - Player chunk coord:", player_chunk_coord)
 
 	# Spawn new chunks around the player if they're not already spawned
 	for x in range(player_chunk_coord.x - chunk_view_range, player_chunk_coord.x + chunk_view_range + 1):
@@ -46,28 +39,21 @@ func _physics_process(_delta: float) -> void:
 	# Once spawned, they remain in the scene permanently.
 
 func spawn_chunk(chunk_coord: Vector2i) -> void:
-	print(">>> spawn_chunk() called for:", chunk_coord)
-
 	if spawned_chunks.has(chunk_coord):
-		print(">>> Chunk already spawned at:", chunk_coord, "- Skipping.")
 		return
 
 	var chunk_scene: PackedScene
 
 	if chunk_coord == Vector2i(0, 0):
-		print(">>> Using village_chunk_scene for origin.")
 		chunk_scene = village_chunk_scene
 	else:
 		# Determine the random chunk (Forest, Desert, etc.) for this coordinate
 		chunk_scene = get_chunk_scene_for_coord(chunk_coord)
 
-	print(">>> Instantiating scene:", chunk_scene, "at coord:", chunk_coord)
 	var new_chunk = chunk_scene.instantiate() as Node2D
 	new_chunk.position = chunk_coord_to_world_position(chunk_coord)
 	add_child(new_chunk)
 	spawned_chunks[chunk_coord] = new_chunk
-
-	print(">>> Chunk spawned successfully:", chunk_coord)
 
 func get_chunk_scene_for_coord(chunk_coord: Vector2i) -> PackedScene:
 	if random_chunk_scenes.size() == 0:
@@ -79,22 +65,12 @@ func get_chunk_scene_for_coord(chunk_coord: Vector2i) -> PackedScene:
 	rng.seed = get_chunk_seed(chunk_coord)
 
 	var index = rng.randi() % random_chunk_scenes.size()
-	var chosen_scene = random_chunk_scenes[index]
-
-	print(">>> get_chunk_scene_for_coord(): coord =", chunk_coord, ", seed =", rng.seed,
-		  ", chosen index =", index, ", scene =", chosen_scene)
-
-	return chosen_scene
+	return random_chunk_scenes[index]
 
 func get_chunk_seed(chunk_coord: Vector2i) -> int:
 	var x_val = chunk_coord.x * 374761393
 	var y_val = chunk_coord.y * 668265263
-	var seed_result = x_val + y_val + world_seed
-
-	# Debug print for the seed formula
-	print(">>> get_chunk_seed(): coord =", chunk_coord, ", world_seed =", world_seed, ", result =", seed_result)
-
-	return seed_result
+	return x_val + y_val + world_seed
 
 func world_to_chunk_coord(world_pos: Vector2) -> Vector2i:
 	var cx = int(floor(world_pos.x / chunk_size.x))

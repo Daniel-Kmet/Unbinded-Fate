@@ -1,10 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://c7vcuqiweex2j"]
+[gd_scene load_steps=24 format=3 uid="uid://c7vcuqiweex2j"]
 
 [ext_resource type="Script" path="res://Player.cs" id="2_nfju6"]
 [ext_resource type="Resource" uid="uid://clq2iuuqit3jw" path="res://Sprites/Items/RulerWeapon.tres" id="2_w8oxv"]
 [ext_resource type="Script" path="res://FollowCamera.cs" id="3_84xh7"]
+[ext_resource type="Resource" uid="uid://drviyhqe2yvft" path="res://Sprites/Items/HolyBibleWeapon.tres" id="3_ddfa0"]
 [ext_resource type="Script" path="res://Health.cs" id="3_g8cpl"]
 [ext_resource type="PackedScene" uid="uid://cxn8vv2j8h68m" path="res://Healthbar.tscn" id="4_hgw2i"]
+[ext_resource type="Resource" uid="uid://0s5o0sk3ear" path="res://Sprites/Items/CrossWeapon.tres" id="4_ijoo0"]
+[ext_resource type="Resource" uid="uid://cieho0yf0prwj" path="res://Sprites/Items/ProjectileWeapon.tres" id="5_nc0s5"]
 [ext_resource type="Texture2D" uid="uid://cgxm1jambl2h1" path="res://Animations/Player/Attack/Default Guy Swing Animation.png" id="6_3hhv5"]
 [ext_resource type="Texture2D" uid="uid://cqgkkg730mpj7" path="res://Animations/Player/Death/Death Animation.png" id="6_ifxyi"]
 [ext_resource type="Texture2D" uid="uid://d4a0f7h4mfere" path="res://Sprites/Weapons/Ruler Weapon.png" id="8_3q35f"]
@@ -618,7 +621,8 @@ collision_layer = 2
 collision_mask = 16
 script = ExtResource("2_nfju6")
 playerHealth = NodePath("Data/Health")
-currentWeapon = ExtResource("2_w8oxv")
+currentWeapon = ExtResource("5_nc0s5")
+availableWeapons = Array[Object]([ExtResource("5_nc0s5"), ExtResource("3_ddfa0"), ExtResource("4_ijoo0"), ExtResource("2_w8oxv")])
 
 [node name="Data" type="Node2D" parent="."]
 

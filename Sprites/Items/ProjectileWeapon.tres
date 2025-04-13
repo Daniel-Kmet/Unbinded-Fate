@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cieho0yf0prwj"]
+
+[ext_resource type="Script" path="res://Item.cs" id="1_pouos"]
+[ext_resource type="Texture2D" uid="uid://cgxm1jambl2h1" path="res://Animations/Player/Attack/Default Guy Swing Animation.png" id="2_magic1"]
+
+[resource]
+script = ExtResource("1_pouos")
+name = "Magic Orb"
+damage = 25.0
+level = 0
+animationName = "Bible Weapon Attack Animations"
+texture = ExtResource("2_magic1")
+projectileScene = "res://Projectile.tscn"
+fireRate = 1.25

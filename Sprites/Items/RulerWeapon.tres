@@ -7,5 +7,6 @@
 script = ExtResource("1_pouos")
 name = "Ruler"
 damage = 3
+level = 0
 animationName = "Ruler Weapon Attack Animations"
 texture = ExtResource("2_k5j20")

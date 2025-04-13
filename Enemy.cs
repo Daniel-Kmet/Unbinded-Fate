@@ -19,6 +19,10 @@ public partial class Enemy : CharacterBody2D, IDamageable
 
 	public override void _Ready()
 	{
+		// Add to enemies group so projectile weapons can find them
+		AddToGroup("enemies");
+		GD.Print($"Enemy: {Name} added to 'enemies' group");
+		
 		// set health
 		collided = false;
 		InitializeHealth();
