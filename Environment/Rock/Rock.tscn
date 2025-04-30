@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cup0yp7om2xda"]
+
+[ext_resource type="Texture2D" uid="uid://b7hhmewfse0u7" path="res://Environment/Rock/rockpng.png" id="1_bgjsv"]
+[ext_resource type="Script" path="res://Environment/Rock/Rock.cs" id="2_33cx7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dbald"]
+
+[node name="Rock" type="StaticBody2D"]
+script = ExtResource("2_33cx7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bgjsv")
+script = ExtResource("2_33cx7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dbald")
+one_way_collision_margin = 22.0
+script = ExtResource("2_33cx7")

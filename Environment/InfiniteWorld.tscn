@@ -1,0 +1,89 @@
+[gd_scene load_steps=14 format=3 uid="uid://bvkusxidsrui0"]
+
+[ext_resource type="Texture2D" uid="uid://dh1hb202qyqna" path="res://Environment/Grass/Grass Texture 1.png" id="1_sw3jo"]
+[ext_resource type="Texture2D" uid="uid://r7ltmrx2lfd2" path="res://Environment/Grass/Grass Texture 2.pxo.png" id="2_moktr"]
+[ext_resource type="Texture2D" uid="uid://boalh48cdvnc6" path="res://Grass Tiles And Grass Environments/Grass Tiles (1).jpeg" id="3_eaegq"]
+[ext_resource type="Texture2D" uid="uid://c026u8gvrx8ax" path="res://Grass Tiles And Grass Environments/Grass Tiles 2 1.png" id="3_qac6f"]
+[ext_resource type="Script" path="res://Environment/WorldGenerator/InfiniteWorldGenerator.cs" id="6_k5gi6"]
+[ext_resource type="PackedScene" uid="uid://cu0o7hyqge86k" path="res://Environment/Chunks/Village/Village_Chunk.tscn" id="7_vifdg"]
+[ext_resource type="PackedScene" uid="uid://dcaudg5ir77yj" path="res://Environment/Chunks/Desert/Desert_Chunk.tscn" id="8_shu4v"]
+[ext_resource type="PackedScene" uid="uid://cqniin282qil4" path="res://Environment/Chunks/TestChunk.tscn" id="9_iqrve"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0iemp"]
+texture = ExtResource("1_sw3jo")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wtas7"]
+texture = ExtResource("2_moktr")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dlu85"]
+texture = ExtResource("3_eaegq")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e7abo"]
+texture = ExtResource("3_qac6f")
+
+[sub_resource type="TileSet" id="TileSet_fy3qe"]
+sources/0 = SubResource("TileSetAtlasSource_0iemp")
+sources/1 = SubResource("TileSetAtlasSource_wtas7")
+sources/2 = SubResource("TileSetAtlasSource_dlu85")
+sources/4 = SubResource("TileSetAtlasSource_e7abo")
+
+[node name="InfiniteWorld" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_fy3qe")
+format = 2
+
+[node name="InfiniteWorldGenerator" type="Node2D" parent="."]
+script = ExtResource("6_k5gi6")
+VillageChunkScene = ExtResource("7_vifdg")
+RandomChunkScenes = [ExtResource("8_shu4v"), ExtResource("9_iqrve")]
+WorldSeed = 42
+PlayerPath = NodePath("../../Player")

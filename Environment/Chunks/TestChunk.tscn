@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqniin282qil4"]
+
+[ext_resource type="Script" path="res://Environment/Chunks/TestChunk.cs" id="1_msioa"]
+[ext_resource type="Texture2D" uid="uid://bs7jg30jy6f0w" path="res://Environment/tree/tree.png" id="2_207yi"]
+[ext_resource type="Texture2D" uid="uid://b7hhmewfse0u7" path="res://Environment/Rock/rockpng.png" id="3_iiicj"]
+
+[node name="TestChunk" type="Node2D"]
+script = ExtResource("1_msioa")
+TreeTexture = ExtResource("2_207yi")
+RockTexture = ExtResource("3_iiicj")
